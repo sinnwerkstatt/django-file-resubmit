@@ -48,7 +48,7 @@ class AdminResubmitBaseWidget(BaseWidget):
         return upload
     
     def random_key(self):
-        x = "%s%s%s" % (settings.SECRET_KEY, time.time(), random.random())
+        x = "%s%s" % (time.time(), random.random())
         random.seed(x)
         return hashlib.md5(str(random.random())).hexdigest()
     
