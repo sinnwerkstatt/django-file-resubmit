@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-from cStringIO import StringIO
+try:
+    from cStringIO import StringIO
+except ImportError as e:
+    from io import StringIO
 
 from django.core.cache import get_cache
 from django.core.files.uploadedfile import InMemoryUploadedFile
