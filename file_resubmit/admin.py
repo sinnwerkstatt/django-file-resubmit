@@ -36,7 +36,8 @@ class AdminResubmitBaseWidget(BaseWidget):
         self.input_name = "%s_cache_key" % name
         self.cache_key = data.get(self.input_name, "")
         
-        if files.has_key(name):
+        #if files.has_key(name):
+        if name in files:
             self.cache_key = self.random_key()[:10]
             upload = files[name]
             FileCache().set(self.cache_key, upload)
@@ -50,7 +51,7 @@ class AdminResubmitBaseWidget(BaseWidget):
     def random_key(self):
         x = "%s%s" % (time.time(), random.random())
         random.seed(x)
-        return hashlib.md5(str(random.random())).hexdigest()
+        return hashlib.md5(str(random.random()).encode()).hexdigest()
     
     def output_extra_data(self, value):
         output = ''
