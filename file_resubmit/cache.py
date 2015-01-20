@@ -32,7 +32,7 @@ class FileCache(object):
         state = self.backend.get(key)
         if state: 
             f = StringIO()
-            f.write(state["content"].decode())
+            f.write(state["content"])
             upload = InMemoryUploadedFile(
                     file=f,
                     field_name=field_name,
