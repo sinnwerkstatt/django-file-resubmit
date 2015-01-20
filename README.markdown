@@ -69,7 +69,7 @@ admin.py
 
     admin.site.register(Page, PageAdmin)
         
-## Widgets examples
+## Widgets (in any ModelForm) examples
 
 admin.py
 
