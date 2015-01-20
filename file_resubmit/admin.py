@@ -51,7 +51,7 @@ class AdminResubmitBaseWidget(BaseWidget):
     def random_key(self):
         x = "%s%s" % (time.time(), random.random())
         random.seed(x)
-        return hashlib.md5(str(random.random()).encode()).hexdigest()
+        return hashlib.md5(str(random.random())).hexdigest()
     
     def output_extra_data(self, value):
         output = ''
