@@ -11,7 +11,7 @@ from setuptools import setup, find_packages
 
 setup(
     name     = 'django-file-resubmit',
-    version  = '0.4.1',
+    version  = '0.4.2',
     packages = find_packages(),
 
     requires = ['python (>= 2.5)', 'django (>= 1.2)'],
