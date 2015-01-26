@@ -10,6 +10,7 @@ from django.conf import settings
 from django.db import models
 from django.forms import ClearableFileInput
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy as _
 
 try:
     from sorl.thumbnail.fields import ImageField
@@ -56,7 +57,7 @@ class AdminResubmitBaseWidget(BaseWidget):
     def output_extra_data(self, value):
         output = ''
         if value and self.cache_key:
-            output += ' ' + self.filename_from_value(value)
+            output += _('Current (unsaved):') + ' ' + self.filename_from_value(value) + ' '
         if self.cache_key:
             output += forms.HiddenInput().render(self.input_name, self.cache_key, {})
         return output
@@ -71,16 +72,16 @@ class AdminResubmitFileWidget(AdminResubmitBaseWidget):
     template_with_clear = ClearableFileInput.template_with_clear
     
     def render(self, name, value, attrs=None):
-        output = ClearableFileInput.render(self, name, value, attrs)
-        output += self.output_extra_data(value)
+        output = self.output_extra_data(value)
+        output += ClearableFileInput.render(self, name, value, attrs)
         return mark_safe(output)
 
 
 class AdminResubmitImageWidget(AdminResubmitBaseWidget):
 
     def render(self, name, value, attrs=None):
-        output = super(AdminResubmitImageWidget, self).render(name, value, attrs)
-        output += self.output_extra_data(value)
+        output = self.output_extra_data(value)
+        output += super(AdminResubmitImageWidget, self).render(name, value, attrs)
         return mark_safe(output)
 
 
